@@ -1,0 +1,61 @@
+
+Claude Megaprompt: Swing Sage Rebuild & AI Integration – Phase 2
+
+Claude, this is the part where you take over. I’ve built the foundation of what’s meant to become the best AI-powered golf coaching platform on the internet — a site called Swing Sage. It’s structurally wired up, many files are already in place, and the front-end connects successfully to a functioning backend with AWS integration. Video uploads are routed through S3 and appear to work, allowing swings to be stored and shared — although I’m not 100% sure on the setup, and I welcome your guidance on whether this has been implemented securely, efficiently, and correctly.
+
+What I Need You to Do:
+Your job is to do all the heavy lifting from here. Think of this as a flagship project — a site with serious ambition behind it, designed to serve golfers of all abilities with world-class coaching content, elegant UI, intuitive features, and intelligent AI analysis. This is not a toy. This is a potential livelihood, built from months of my time, personal energy, and belief that we can outclass the competition with the right structure, polish, and content.
+
+I want full feature completion, design upgrades, content generation, and a working AI system that integrates:
+- swing analysis feedback,
+- personalised coaching tips,
+- mindset advice,
+- and much more.
+
+Swing Sage Must Include (You May Re-Architect if Needed):
+
+✅ Already Started or Wired In:
+- AWS-backed video uploads (check implementation, clean up UX)
+- Frontend with base components and layout
+- Swing analysis placeholder system
+
+🧠 Now Needs Full Execution:
+- AI Tip Generator: Contextual, skill-level-based swing or course advice
+- Coach’s Corner: Quotes and coaching drills from top 20 golf minds
+- Rules & Etiquette: Interactive summaries by player group (kids, seniors, new golfers)
+- Wisdom & Wit: Humorous analogies and memorable coaching phrases
+- Course Strategy: Shot selection, position play, on-course thinking
+- Mental Game Zone: Performance mindset, handling pressure, focus builders
+- Mythbusters: Clear up common coaching misconceptions (e.g. “keep your head down”)
+- Save & Share: Simple UX to store favourite tips or send video breakdowns
+- Dynamic Content Areas: Context-aware, reactive UI components (like “Tip of the Day”)
+
+Tech & UX Expectations:
+- Keep a dark theme with green accents, modern, polished, and slightly futuristic
+- Ensure accessibility, mobile responsiveness, and intuitive design throughout
+- Sidebar on desktop, hamburger menu on mobile
+- Add subtle transitions (hover effects, fade-ins, tip reveals)
+- Optimise AI analysis flow — this is the star of the show
+- Audit and improve backend-AWS wiring if anything looks inefficient, insecure, or clunky
+- Keep external libraries minimal unless critical for performance or design
+
+Output Guidelines (Very Important):
+1. Always explain what you’re changing or building (brief summary is fine).
+2. Provide complete file replacements (e.g. full index.html, style.css, script.js) — do not give snippets that require manual insertion. I do not want to figure out what lines to replace.
+3. Label each file clearly and group by function or feature.
+4. When generating content, aim for clarity, usefulness, and real-world golfing insight — whether that’s from AI or trusted knowledge sources.
+
+Once You’ve Built the Next Version:
+
+Give me a straight-talking to-do list with:
+- Which files to replace and where
+- Any .env keys or AWS credentials I need to check
+- Any folders or routes that need adjusting
+- Clear technical or manual steps I should complete to finish the work
+
+Keep this final checklist laser-focused — assume I’ve got drive and vision, but limited patience for hunting through broken paths or fixing half-wired features.
+
+Final Note:
+This isn’t just a site. It represents years of thought, months of effort, and possibly my future income. If it hits the mark, Swing Sage will be one of the most respected AI-driven golf sites online — used by beginners, weekend warriors, club-level players, and curious hackers alike.
+
+This means everything to me. Don’t just code. Build it like it’s yours.

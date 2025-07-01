@@ -1,0 +1,611 @@
+/* src/index.css - COMPLETE FILE */
+
+:root {
+  /* Color Palette */
+  --primary-bg: #1a1a1a; /* Deep Dark Grey */
+  --secondary-bg: #2b2b2b; /* Slightly lighter dark grey for cards */
+  --tertiary-bg: #3d3d3d; /* Even lighter, for borders/dividers */
+  --text-color: #e0e0e0; /* Off-white for readability */
+  --accent-color: #00ff66; /* Neon Green for highlights, buttons */
+  --danger-color: #ff6b6b; /* For errors or warnings */
+  --placeholder-color: rgba(
+    224,
+    224,
+    224,
+    0.6
+  ); /* Lighter text for placeholders */
+
+  /* Typography */
+  --font-family-primary: "Inter", sans-serif;
+  --font-size-base: 16px;
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+
+  /* Border Radius */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex; /* Makes #root or its container a flex item */
+  overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+}
+
+/* Global App Container */
+#root {
+  display: flex; /* This makes the sidebar and content-area flex items */
+  flex-grow: 1;
+  min-height: 100vh;
+  position: relative; /* Establish positioning context for children if needed */
+}
+
+/* Sidebar Layout */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  background-color: var(--secondary-bg);
+  padding: var(--spacing-md);
+  border-right: 1px solid var(--tertiary-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+  position: sticky; /* Keep sidebar in place on scroll */
+  top: 0;
+  height: 100vh; /* Make sidebar full height */
+  overflow-y: auto; /* Allow sidebar content to scroll if too long */
+  z-index: 1000; /* Ensure sidebar is always on top */
+}
+
+.sidebar-logo {
+  width: 150px; /* Adjust as needed */
+  margin-bottom: var(--spacing-lg);
+  filter: drop-shadow(0 0 5px var(--accent-color)); /* Glow effect for logo */
+}
+
+.nav-links {
+  list-style: none;
+  width: 100%;
+  margin-top: var(--spacing-md);
+}
+
+.nav-links li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  padding: 12px var(--spacing-sm);
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 600;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: var(--tertiary-bg);
+  color: var(--accent-color);
+}
+
+.nav-links a svg {
+  margin-right: 10px;
+  color: inherit; /* Inherit color from parent for active state */
+}
+
+.content-area {
+  flex-grow: 1;
+  padding: var(--spacing-lg);
+  overflow-y: auto; /* Allow scrolling for content */
+  position: relative; /* Establish positioning context for its children */
+  z-index: 1; /* Ensure content is below sidebar, but above other potential background elements if any */
+}
+
+/* Global Component Styles */
+.card {
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
+    border-color 0.2s ease;
+  border: 1px solid var(--tertiary-bg); /* Subtle border */
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent-color); /* Highlight border on hover */
+}
+
+.section-title {
+  color: var(--accent-color);
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+}
+
+.button {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  border: 1px solid var(--tertiary-bg);
+  padding: 12px 25px;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  outline: none;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.button:hover {
+  background-color: var(--tertiary-bg);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.button.button-accent {
+  background-color: var(--accent-color);
+  color: var(--primary-bg);
+  border-color: var(--accent-color);
+  font-weight: 700;
+}
+
+.button.button-accent:hover {
+  background-color: #00e65c; /* Slightly darker green */
+  border-color: #00e65c;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
+}
+
+.button.active {
+  background-color: var(--accent-color);
+  color: var(--primary-bg);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px rgba(0, 255, 102, 0.5);
+}
+
+.select-dropdown {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  border: 1px solid var(--tertiary-bg);
+  padding: 10px 15px;
+  border-radius: var(--border-radius-sm);
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e0e0e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  cursor: pointer;
+  min-width: 180px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-dropdown:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(0, 255, 102, 0.3);
+  outline: none;
+}
+
+.loading-state,
+.placeholder-text,
+.note-text {
+  text-align: center;
+  color: var(--placeholder-color);
+  margin-top: var(--spacing-md);
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Utility classes */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video Player Specific Styles */
+.video-comparison-area {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius-md);
+  object-fit: contain; /* Ensure video scales properly within its container */
+  background-color: black; /* Black background for player areas */
+}
+
+.player-wrapper {
+  position: relative; /* Crucial for AnalysisOverlay positioning */
+  width: 100%;
+  max-width: 640px; /* Or whatever max width for your video players */
+  aspect-ratio: 16/9; /* Maintain 16:9 aspect ratio */
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.player-wrapper h3 {
+  font-size: 1.2em;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+/* AI Tip Generator Specific Styles */
+.ai-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  align-items: end;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.control-group label {
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.95em;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.tip-type-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.tip-type-buttons .button {
+  flex-grow: 1;
+}
+
+.tip-output-area {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai-tip-display {
+  width: 100%;
+  text-align: left;
+}
+
+.ai-tip-display h3 {
+  margin-top: 0;
+}
+
+.ai-tip-display p {
+  margin-bottom: 1em;
+}
+
+/* Video Uploader Specific Styles */
+.video-uploader {
+  border: 2px dashed var(--tertiary-bg) !important; /* Override card border for dashed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px; /* Give it some height */
+}
+
+.upload-button {
+  display: inline-flex !important; /* Ensure flex for icon+text */
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-progress-area {
+  width: 80%; /* Width for progress bar */
+  max-width: 400px;
+  margin-top: var(--spacing-md);
+}
+
+/* Coach Roundtable Specific Styles */
+.coach-roundtable {
+  padding-bottom: var(--spacing-lg); /* Add space below carousel */
+}
+
+.coach-roundtable .filter-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--tertiary-bg);
+}
+
+.coach-roundtable .filter-controls label {
+  white-space: nowrap; /* Prevent label from wrapping */
+}
+
+/* Swiper.js Custom Styling */
+.swiper {
+  width: 100%;
+  padding-bottom: 50px; /* Space for pagination dots */
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Stretch cards to be same height */
+  height: auto; /* Allow content to dictate height */
+}
+
+.coach-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-md);
+  height: 100%; /* Ensure card fills slide height */
+  width: 100%; /* Ensure card fills slide width */
+}
+
+.coach-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: var(--spacing-sm);
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+  transition: transform 0.3s ease-in-out;
+}
+
+.coach-card:hover .coach-photo {
+  transform: scale(1.05);
+}
+
+.coach-card h3 {
+  color: var(--accent-color);
+  margin-bottom: 5px;
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.coach-bio {
+  font-size: 0.9em;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-bottom: var(--spacing-sm);
+  min-height: 40px; /* Give some consistent height */
+}
+
+.coach-quote {
+  font-size: 1.1em;
+  font-style: italic;
+  color: var(--text-color);
+  margin-top: var(--spacing-sm);
+  flex-grow: 1; /* Pushes content down */
+  display: flex;
+  align-items: center; /* Center quote vertically within its space */
+}
+
+/* Swiper Navigation (Arrows) */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--accent-color) !important;
+  font-size: 30px !important; /* Adjust arrow size */
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 1;
+}
+
+/* Swiper Pagination (Dots) */
+.swiper-pagination-bullet {
+  background-color: var(--tertiary-bg) !important;
+  opacity: 0.7;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--accent-color) !important;
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+}
+
+/* Rules & Mythbusting Specific Styles */
+.rules-mythbusting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.myth-fact-card {
+  cursor: pointer;
+  border-radius: var(--border-radius-md);
+  overflow: hidden; /* Ensures content doesn't spill out when collapsing */
+}
+
+.myth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: var(--secondary-bg);
+  border-bottom: 1px solid var(--tertiary-bg);
+  transition: background-color 0.2s ease;
+}
+
+.myth-fact-card:hover .myth-header {
+  background-color: var(--tertiary-bg);
+}
+
+.myth-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.label-myth {
+  color: var(--danger-color); /* Red for MYTH */
+  font-weight: 700;
+  margin-right: 10px;
+  letter-spacing: 0.05em;
+  min-width: 60px; /* Ensure consistent width */
+  display: inline-block;
+}
+
+.toggle-icon {
+  font-size: 1.5em;
+  color: var(--accent-color);
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-icon.expanded {
+  transform: rotate(90deg); /* Rotate for expanded state */
+}
+
+.fact-details {
+  padding: var(--spacing-md);
+  background-color: var(--secondary-bg);
+  border-top: 1px solid var(--tertiary-bg);
+}
+
+.fact-title {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.label-fact {
+  color: var(--accent-color); /* Green for FACT */
+  font-weight: 700;
+  margin-right: 10px;
+  letter-spacing: 0.05em;
+  min-width: 60px; /* Ensure consistent width */
+  display: inline-block;
+}
+
+.explanation {
+  font-size: 0.95em;
+  color: var(--text-color);
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.rule-reference {
+  font-size: 0.8em;
+  color: var(--placeholder-color);
+  font-style: italic;
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--tertiary-bg);
+    padding: var(--spacing-sm);
+    flex-direction: row; /* Horizontal navigation */
+    justify-content: space-around;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    position: static; /* Remove sticky on small screens */
+  }
+  .sidebar-logo {
+    display: none; /* Hide logo on small screens for space */
+  }
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allow nav items to wrap */
+    margin-top: 0;
+  }
+  .nav-links li {
+    margin: 5px 5px; /* Smaller margins for horizontal layout */
+  }
+  .nav-links a {
+    padding: 8px 10px;
+    font-size: 0.85rem; /* Slightly smaller font */
+    flex-direction: column; /* Stack icon and text */
+    text-align: center;
+  }
+  .nav-links a svg {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+  .content-area {
+    padding: var(--spacing-md);
+  }
+  .section-title {
+    font-size: 1.8em;
+    margin-bottom: var(--spacing-md);
+  }
+  .video-comparison-area {
+    flex-direction: column; /* Stack videos vertically on small screens */
+  }
+  .ai-controls-grid {
+    grid-template-columns: 1fr; /* Stack controls on small screens */
+  }
+  .tip-type-buttons {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+  }
+}

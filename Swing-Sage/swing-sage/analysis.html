@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swing Analysis - Swing Sage</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+      <div class="p-6"><h1 class="text-2xl font-bold text-brand-green-dark dark:text-white">Swing Sage</h1></div>
+      <nav class="flex-1 px-4 py-2">
+        <ul class="space-y-2">
+          <li><a href="/" class="flex items-center p-3 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 group"><svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21"><path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/><path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.934A8.5 8.5 0 0 0 12.5 0Z"/></svg><span class="ml-3">Dashboard</span></a></li>
+          <li><a href="/analysis.html" class="flex items-center p-3 text-gray-800 dark:text-gray-200 rounded-lg bg-gray-200 dark:bg-gray-700 group"><svg class="w-5 h-5 text-brand-green-dark dark:text-brand-green-light" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"/></svg><span class="ml-3 font-semibold">Swing Analysis</span></a></li>
+        </ul>
+      </nav>
+      <div class="p-4 mt-auto"><button id="theme-toggle" class="w-full flex items-center p-3 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 group"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg><span class="ml-3">Toggle Theme</span></button></div>
+    </aside>
+
+    <main class="flex-1 p-8 overflow-y-auto">
+      <h2 class="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200">Analyze Your Swing</h2>
+
+      <div id="analysis-upload-container" class="bg-white dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 text-center flex flex-col items-center justify-center min-h-[24rem] transition-all duration-300">
+        <div id="upload-initial-prompt"><svg class="w-16 h-16 text-gray-400 dark:text-gray-500 mb-4 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9A2.25 2.25 0 0 0 13.5 5.25h-9A2.25 2.25 0 0 0 2.25 7.5v9A2.25 2.25 0 0 0 4.5 18.75Z" /></svg><p class="text-gray-500 dark:text-gray-400 mb-4">Drag & drop your swing video or</p></div>
+        <div id="video-preview-container" class="hidden w-full max-w-md"><video id="video-preview" class="rounded-lg w-full mb-4 shadow-lg" controls muted playsinline></video></div>
+        <input type="file" id="file-upload-input" class="hidden" accept="video/*">
+        <label for="file-upload-input" id="file-upload-label" class="cursor-pointer bg-brand-green-dark text-white font-bold py-2 px-6 rounded-lg hover:bg-brand-green-light transition-colors duration-300">Choose File</label>
+        <button id="analyze-button" class="hidden mt-6 bg-brand-green-dark text-white font-bold py-3 px-8 rounded-lg hover:bg-brand-green-light text-lg transform hover:scale-105 transition-all duration-300">Analyze Swing</button>
+        <div id="loading-spinner" class="hidden"><div class="flex flex-col items-center justify-center mt-6"><svg class="animate-spin h-8 w-8 text-brand-green-light" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><p class="text-lg mt-4 text-gray-400">Analyzing your swing...</p></div></div>
+      </div>
+
+      <!-- NEW: Polished Analysis Results Card -->
+      <div id="analysis-results-container" class="hidden mt-8 bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg animate-fade-in-up">
+        <h3 class="text-2xl font-bold mb-6 text-brand-green-dark dark:text-white border-b border-gray-200 dark:border-gray-700 pb-4">Analysis Report</h3>
+        <div class="flex flex-col md:flex-row gap-8">
+          <!-- Left Side: Score -->
+          <div class="flex flex-col items-center">
+            <h4 class="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-2">Overall Score</h4>
+            <div id="results-score-container" class="w-32 h-32 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
+              <span id="results-score" class="text-5xl font-bold text-brand-green-dark dark:text-brand-green-light"></span>
+            </div>
+          </div>
+          <!-- Right Side: Details -->
+          <div class="flex-1">
+            <h4 class="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-2">Summary</h4>
+            <p id="results-summary" class="mb-6 text-gray-700 dark:text-gray-400"></p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-2">What Went Well</h4>
+                <ul id="results-pros-list" class="space-y-2"></ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-gray-600 dark:text-gray-300 mb-2">Areas for Improvement</h4>
+                <ul id="results-cons-list" class="space-y-2"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="analyze-another-button" class="mt-8 bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300">Analyze Another Swing</button>
+      </div>
+
+    </main>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
